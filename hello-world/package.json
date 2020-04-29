@@ -1,0 +1,17 @@
+{
+  "name": "next-onekijs-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "buildstart": "next build && next start",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "9.3.5",
+    "onekijs": "^0.1.9",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
