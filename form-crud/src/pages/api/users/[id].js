@@ -1,4 +1,4 @@
-import users from './db';
+import { findById, remove, update } from './db';
 
 export default (req, res) => {
   const {
@@ -18,7 +18,7 @@ export default (req, res) => {
 }
 
 const handleGET = (id, res) => {
-  const user = users[parseInt(id)];
+  const user = findById(id);
   if (user) {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json')
@@ -30,12 +30,12 @@ const handleGET = (id, res) => {
 }
 
 const handlePUT = (id, req, res) => {
-  const user = users[parseInt(id)];
+  let user = findById(id);
   if (user) {
-    users[parseInt(id)] = req.body;
+    user = update(req.body);
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json')
-    res.end(JSON.stringify(users[parseInt(id)]));
+    res.end(JSON.stringify(user));
   } else {
     res.statusCode = 404;
     res.end();
@@ -43,9 +43,9 @@ const handlePUT = (id, req, res) => {
 }
 
 const handleDELETE = (id, res) => {
-  const user = users[parseInt(id)];
+  const user = findById(id);
   if (user) {
-    delete users[parseInt(id)];
+    remove(user.id);
   } 
   res.statusCode = 200;
   res.end();

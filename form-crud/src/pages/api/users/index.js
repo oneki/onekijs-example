@@ -1,5 +1,5 @@
 
-import users, {nextId} from './db';
+import {create, list} from './db';
 
 
 export default (req, res) => {
@@ -14,19 +14,17 @@ export default (req, res) => {
 }
 
 const handleGET = (res) => {
-  const data = Object.values(users);
+  // const data = Object.values(users);
+  const users = list();
   
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify(data));
+  res.end(JSON.stringify(users));
 }
 
 const handlePOST = (req, res) => {
-  const id = nextId();
-  const user = req.body;
-  user.id = id;
-  users[id] = user;
-
+  const user = create(req.body);
+  
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify(user));

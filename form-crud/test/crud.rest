@@ -16,13 +16,13 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/users/1
+PUT http://localhost:3000/api/users/19ea3b58-31d7-464b-b516-8d8126194957
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "Franki2",
-    "firstname": "Bruno"
+    "id": "19ea3b58-31d7-464b-b516-8d8126194957",
+    "name": "Rabeux2",
+    "firstname": "Florian"
 }
 
 ###
