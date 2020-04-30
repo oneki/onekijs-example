@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from "next/head";
 import { useSetting } from 'onekijs';
-import MainLayout from '../layout/MainLayout';
+import MainLayout from '../layout/mainLayout';
 
 export default function Main() {
   const appName = useSetting('appName');

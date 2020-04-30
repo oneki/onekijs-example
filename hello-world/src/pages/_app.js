@@ -6,15 +6,7 @@ const MyApp = ({Component, pageProps}) => {
 
   return (
     <NextApp settings={settings}>
-      <div
-        style={{
-          backgroundColor: "#EEE",
-          padding: "10px",
-          marginBottom: "10px",
-        }}
-      >
-        <Component {...pageProps} />
-      </div>
+      <Component {...pageProps} />
     </NextApp>
   );
 };
