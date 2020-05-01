@@ -6,9 +6,9 @@ import styles from './Header.module.css';
 export default () => {
   return (
     <div className={styles.container}>
-      TOTO
       <Link href="/"><a className={styles.link}>Home page</a></Link>
-      <Link href="/users"><a className={styles.link}>Users page</a></Link>
+      <Link href="/users"><a className={styles.link}>Users page (Client Rendered)</a></Link>
+      <Link href="/ssrusers"><a className={styles.link}>Users page (Server Rendered)</a></Link>
     </div>
   );
 };

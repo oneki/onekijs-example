@@ -2,7 +2,9 @@ import React, { useCallback, useState } from "react";
 import Link from 'next/link';
 import LinkButton from "../linkButton";
 
-const UserList = ({ users, loading, onDelete, deleteLoading }) => {
+const UserList = ({ type, users, loading, onDelete }) => {
+
+  const baseUrl = (type === 'ssr') ? '/ssrusers' : '/users';
 
   if (loading) {
     return (
@@ -17,13 +19,13 @@ const UserList = ({ users, loading, onDelete, deleteLoading }) => {
         <ul>
           {users.map((user) => (
             <li key={`key-${user.id}`} style={{marginTop: "15px"}}>
-              <Link href="/users/[id]" as={`/users/${user.id}`}>
+              <Link href={`${baseUrl}/[id]`} as={`${baseUrl}/${user.id}`}>
                 <a>
                   {user.firstname} {user.name}
                 </a>
               </Link>
-              <LinkButton type="edit" href="/users/[id]/edit" as={`/users/${user.id}/edit`}>Edit</LinkButton>
-              <LinkButton type="remove" onClick={() => onDelete(user.id)}>{deleteLoading ? "Deleting...": "Delete"}</LinkButton>
+              <LinkButton type="edit" href={`${baseUrl}/[id]/edit`} as={`${baseUrl}/${user.id}/edit`}>Edit</LinkButton>
+              <LinkButton type="remove" onClick={() => onDelete(user.id)}>Delete</LinkButton>
             </li>
           ))}
         </ul>
