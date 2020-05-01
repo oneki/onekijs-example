@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../component/header";
 import Body from "../../component/body";
+import { layout } from 'onekijs';
 
 const MainLayout = ({ children }) => {
   return (
@@ -11,6 +12,4 @@ const MainLayout = ({ children }) => {
   );
 };
 
-
-
-export default MainLayout;
+export default layout(MainLayout);

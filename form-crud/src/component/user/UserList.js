@@ -3,8 +3,6 @@ import Link from 'next/link';
 import LinkButton from "../linkButton";
 
 const UserList = ({ users, loading, onDelete, deleteLoading }) => {
-  const [deleteId, setDeleteId] = useState(null);
-
 
   if (loading) {
     return (
@@ -16,7 +14,6 @@ const UserList = ({ users, loading, onDelete, deleteLoading }) => {
   if (users) {
     return (
       <>
-        {deleteId && <div>POPUP HERE !!!</div>}
         <ul>
           {users.map((user) => (
             <li key={`key-${user.id}`} style={{marginTop: "15px"}}>

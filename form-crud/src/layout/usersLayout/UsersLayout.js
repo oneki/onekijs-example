@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import MainLayout from "../mainLayout";
+import { layout } from 'onekijs';
 
 const UsersLayout = ({ children }) => {
   return (
@@ -13,4 +15,4 @@ const UsersLayout = ({ children }) => {
 
 
 
-export default UsersLayout;
+export default layout(UsersLayout, MainLayout);
