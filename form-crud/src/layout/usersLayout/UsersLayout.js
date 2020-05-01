@@ -6,7 +6,19 @@ import { layout } from 'onekijs';
 const UsersLayout = ({ children }) => {
   return (
     <>
-      <h4>Client rendered Users section | <Link href="/users"><a>List users</a></Link> | <Link href="/users/new"><a>Add a user</a></Link></h4>
+      <div class="flex mb-4">
+        <div class="w-2/3 h-12">
+          <Link href="/users">
+            <h1 className="text-2xl text-gray-900 font-semibold cursor-pointer">Client rendered Users</h1>
+          </Link>
+        </div>
+        <div class="w-1/3 h-12">
+          <Link href="/users/new">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right">Add user</button>
+          </Link>
+        </div>
+      </div>
+
       <div>{children}</div>
       
     </>

@@ -5,16 +5,10 @@ import UsersLayout from "../../layout/usersLayout";
 
 const UsersPage = () => {
   // call useGet to retrieve the list of users
-  const [users, loading] = useGet('/api/users');
-  const [del, deleteLoading] = useDelete('/api/users/:id');
+  const [users, loading, refresh] = useGet('/api/users');
 
-  const onDelete = useCallback((id) => {
-      del({ params: {id} })
-    }, [del]
-  )
-  
   return (
-    <UserList users={users} loading={loading} onDelete={onDelete} deleteLoading={deleteLoading}/>
+    <UserList users={users} loading={loading} onDelete={refresh} />
   );
 };
 
