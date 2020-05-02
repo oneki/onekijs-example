@@ -2,6 +2,6 @@ import { useLoginService } from "onekijs";
 import React from "react";
 
 export default React.memo(() => {
-  useLoginService('cognito');
+  useLoginService('google');
   return null;
 });

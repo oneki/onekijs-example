@@ -2,6 +2,6 @@ import { useLogoutCallbackService } from "onekijs";
 import React from "react";
 
 export default React.memo(() => {
-  useLogoutCallbackService('cognito');
+  useLogoutCallbackService('google');
   return null;
 });

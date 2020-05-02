@@ -9,7 +9,7 @@ export default async (req, res) => {
     try {
       const response = await axios({
         method: 'get',
-        url: 'PUT_IDP_USERINFO_URL_HERE', //example: https://auth.oneki.net/oauth2/userInfo
+        url: 'https://www.googleapis.com/oauth2/v3/userinfo', //example: https://auth.oneki.net/oauth2/userInfo
         headers: {
           'Authorization': `Bearer ${req.cookies.access_token}`
         }

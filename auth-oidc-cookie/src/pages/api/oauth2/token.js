@@ -6,7 +6,7 @@ export default async (req, res) => {
   try {
     const response = await axios({
       method: 'post',
-      url: 'PUT_IDP_TOKEN_URL_HERE', //https://auth.oneki.net/oauth2/token
+      url: 'https://oauth2.googleapis.com/token', //https://auth.oneki.net/oauth2/token
       data: qs.stringify({
         grant_type: req.body.grant_type,
         code: req.body.code,
@@ -17,8 +17,8 @@ export default async (req, res) => {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       auth: {
-        username: 'PUT_CLIENT_ID_HERE', //example: 1eb5cq6p7d8dm8g4q9jk6qdvd8
-        password: 'PUT_CLIENT_SECRET_HERE' //example: my_super_secret
+        username: '519201240542-gk79ts8svme25ve4sfuoksjvdupv7fhe.apps.googleusercontent.com',
+        password: 'YfFNdvr1FtCzRkH3LMht06H2'
       }
     });
     res.statusCode = 200

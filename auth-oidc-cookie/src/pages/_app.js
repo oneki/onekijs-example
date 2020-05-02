@@ -2,12 +2,10 @@ import { NextApp } from "onekijs";
 import React from "react";
 import settings from "../settings";
 
-const MyApp = ({Component, pageProps}) => {
+const MyApp = (props) => {
 
   return (
-    <NextApp settings={settings}>
-      <Component {...pageProps} />
-    </NextApp>
+    <NextApp {...props} settings={settings} />
   );
 };
 
