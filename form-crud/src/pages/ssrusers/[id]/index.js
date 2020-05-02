@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
 
 const UserPage = ({ user, id}) => {
   return (
-      <User user={user} loading={false} />
+      <User type="ssr" user={user} loading={false} />
   );
 };
 

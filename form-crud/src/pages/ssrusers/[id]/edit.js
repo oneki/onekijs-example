@@ -17,7 +17,7 @@ export async function getServerSideProps(context) {
 const EditUserPage = ({ user, id }) => {
   // const router = useRouter();
   const [put, submitLoading] = usePut(`/api/users/${id}`, {
-    onSuccess: `/users/${id}`, // redirect to /users/:userId if no error
+    onSuccess: `/ssrusers/${id}`, // redirect to /users/:userId if no error
   });
 
   return (

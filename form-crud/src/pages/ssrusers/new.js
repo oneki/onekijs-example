@@ -6,7 +6,7 @@ import SsrUsersLayout from "../../layout/usersLayout/SsrUsersLayout";
 const NewUserPage = () => {
   const [post, submitLoading] = usePost("/api/users", {
     // if the ajax POST request is successful, redirect to the /users page
-    onSuccess: "/users",
+    onSuccess: "/ssrusers",
   });
 
   return (

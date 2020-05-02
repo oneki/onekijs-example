@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-const UserDisplay = ({ user, loading }) => {
+const UserDisplay = ({ user, loading, type }) => {
+  const baseUrl = (type === 'ssr') ? '/ssrusers' : '/users';
+
   if (loading) {
     return <div>Loading ...</div>;
   }
@@ -31,7 +33,7 @@ const UserDisplay = ({ user, loading }) => {
               <div className="w-3/4  h-8 ml-2">{user.firstname}</div>
             </div>
             <div className="border-t-2 border-gray-100 px-0 py-5 flex justify-end mt-5">
-              <Link href={`/users/[id]/edit`} as={`/users/${user.id}/edit`}>
+              <Link href={`${baseUrl}/[id]/edit`} as={`${baseUrl}/${user.id}/edit`}>
                 <button
                   type="button"
                   className="ml-4 px-6 py-3 leading-none font-semibold rounded-lg bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:bg-gray-900"

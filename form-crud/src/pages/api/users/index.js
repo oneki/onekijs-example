@@ -14,7 +14,6 @@ export default (req, res) => {
 }
 
 const handleGET = (res) => {
-  // const data = Object.values(users);
   const users = list();
   
   res.statusCode = 200;

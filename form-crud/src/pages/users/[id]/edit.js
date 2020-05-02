@@ -5,13 +5,13 @@ import UserEdit from "../../../component/user/UserEdit";
 import UsersLayout from "../../../layout/usersLayout";
 
 const EditUserPage = () => {
-  // const router = useRouter();
-  const { id } = useParams();
+  const router = useRouter();
+  const { id } = router.query;
 
   // useGet sends a ajax GET request. Check useGet documentation for more info.
   const [user, loading] = useGet(id ? `/api/users/${id}` : null);
   const [put, submitLoading] = usePut(`/api/users/${id}`, {
-    onSuccess: `/users/${id}`, // redirect to /users/:userId if no error
+    onSuccess: `/users/${id}`, // redirect to /users/:id if no error
   });
 
   return (

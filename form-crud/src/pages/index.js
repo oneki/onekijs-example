@@ -11,7 +11,10 @@ export default function Main() {
       <Head>
         <title>{appName}: Index</title>
       </Head>
-      <div>{welcomeMsg}</div>
+      <h1 className="text-2xl text-gray-900 font-semibold">CRUD example</h1>
+      <p>
+        This example shows how to create / read / update / delete a user
+      </p>
     </MainLayout>
   );
 }
