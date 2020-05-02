@@ -1,17 +1,17 @@
 const axios = require('axios');
 const qs = require('query-string');
 
-export default async (req, res) => {
-  if (!req.cookies.access_token) {
+export default async (idp, req, res) => {
+  if (!idp.access_token) {
     res.statusCode = 401
     res.end();
   } else {
     try {
       const response = await axios({
         method: 'get',
-        url: 'https://www.googleapis.com/oauth2/v3/userinfo', //example: https://auth.oneki.net/oauth2/userInfo
+        url: idp.userinfoEndpoint, //example: https://auth.oneki.net/oauth2/userInfo
         headers: {
-          'Authorization': `Bearer ${req.cookies.access_token}`
+          'Authorization': `Bearer ${idp.access_token}`
         }
       });
       res.statusCode = response.status;

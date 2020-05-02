@@ -9,12 +9,12 @@ const LoggedUser = () => {
   if (emailLoading) return null;
 
   return (
-    <div className={styles.login}>
+    <div className="flex-grow text-right">
       {email && (
-        <div>{email} <Link href="/logout"><a className={styles.link}>Logout</a></Link></div>
+        <><span className="mr-2 text-green-600">{email}</span>|<Link href="/logout"><a className="ml-2 font-medium text-red-900">Logout</a></Link></>
       )}
       {!email && (
-        <div><Link href="/login"><a className={styles.link}>Login</a></Link></div>
+        <><Link href="/login"><a className="font-medium text-green-600">Login</a></Link></>
       )}
     </div>
   )

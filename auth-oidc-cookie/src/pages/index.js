@@ -3,7 +3,13 @@ import React from "react";
 import MainLayout from "../layout/mainLayout";
 import { withLayout } from "onekijs";
 
-const Main = () => {
+// export async function getStaticProps(context) {
+//   return {
+//     props: {name: "Franki"}, // will be passed to the page component as props
+//   }
+// }
+
+const Main = ({name}) => {
   return (
     <>
       <Head>
@@ -55,8 +61,8 @@ const Main = () => {
         </li>
       </ul>
       <ul>
-        <li>{process.env.NEXT_PUBLIC_TEST_1}</li>
-        <li>{process.env.NEXT_STATIC_TEST_1}</li>
+        <li>{process.env.NEXT_TEST_CRED}</li>
+        <li>{process.env.NEXT_GOOGLE_AUTHORIZE_ENDPOINT}</li>
       </ul>
     </>
   );

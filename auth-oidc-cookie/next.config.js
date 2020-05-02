@@ -1,10 +1,14 @@
 const nextEnv = require('next-env');
 const dotenvLoad = require('dotenv-load');
+const withCSS = require('@zeit/next-css')
 
 dotenvLoad();
 
-const withNextEnv = nextEnv();
-
-module.exports = withNextEnv({
-  // Your Next.js config.
+const withNextEnv = nextEnv({
+  staticPrefix: 'NEXT_',
+  publicPrefix: 'PUBLIC_',
 });
+
+module.exports = withNextEnv(withCSS({
+  // Your Next.js config.
+}));

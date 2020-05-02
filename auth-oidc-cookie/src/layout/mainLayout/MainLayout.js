@@ -5,10 +5,10 @@ import { layout } from 'onekijs';
 
 const MainLayout = ({ children }) => {
   return (
-    <>
+    <div className="bg-white antialiased">
       <Header />
       <Body>{children}</Body>
-    </>
+    </div>
   );
 };
 

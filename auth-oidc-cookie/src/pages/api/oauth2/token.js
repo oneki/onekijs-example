@@ -2,11 +2,12 @@
 const axios = require('axios');
 const qs = require('query-string');
 
-export default async (req, res) => {
+export default async (idp, req, res) => {
   try {
+    console.log("CALL TOKEN ENDPOINT", idp);
     const response = await axios({
       method: 'post',
-      url: 'https://oauth2.googleapis.com/token', //https://auth.oneki.net/oauth2/token
+      url: idp.tokenEndpoint, //https://auth.oneki.net/oauth2/token
       data: qs.stringify({
         grant_type: req.body.grant_type,
         code: req.body.code,
@@ -17,8 +18,8 @@ export default async (req, res) => {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       auth: {
-        username: '519201240542-gk79ts8svme25ve4sfuoksjvdupv7fhe.apps.googleusercontent.com',
-        password: 'YfFNdvr1FtCzRkH3LMht06H2'
+        username: idp.clientId,
+        password: idp.clientSecret
       }
     });
     res.statusCode = 200
