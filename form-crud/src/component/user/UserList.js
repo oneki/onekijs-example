@@ -1,7 +1,6 @@
-import React, { useCallback, useState } from "react";
 import Link from 'next/link';
-import LinkButton from "../linkButton";
-import { FiEdit, FiEye, FiTrash2 } from 'react-icons/fi';
+import React from "react";
+import { FiEdit, FiEye } from 'react-icons/fi';
 import DeleteButton from "../deleteButton";
 
 const UserList = ({ type, users, loading, onDelete }) => {
