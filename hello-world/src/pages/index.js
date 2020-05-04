@@ -1,17 +1,19 @@
 import React from 'react'
 import Head from "next/head";
-import { useSetting } from 'onekijs';
+import { useSetting, withLayout } from 'onekijs';
 import MainLayout from '../layout/MainLayout';
 
-export default function Main() {
+const IndexPage = () => {
   const appName = useSetting('appName');
   const welcomeMsg = useSetting('welcomeMsg');
   return (
-    <MainLayout>
+    <>
       <Head>
         <title>{appName}: Index</title>
       </Head>
       <div>{welcomeMsg}</div>
-    </MainLayout>
+    </>
   );
 }
+
+export default withLayout(IndexPage, MainLayout);

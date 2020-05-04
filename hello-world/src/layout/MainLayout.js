@@ -1,4 +1,5 @@
 import React from "react";
+import { layout } from "onekijs";
 
 const MainLayout = ({ children }) => {
   return (
@@ -19,4 +20,4 @@ const MainLayout = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default layout(MainLayout);

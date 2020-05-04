@@ -11,7 +11,7 @@ export default async (idp, req, res) => {
       data: qs.stringify({
         grant_type: req.body.grant_type,
         code: req.body.code,
-        redirect_uri: 'https://localhost:3000/login/callback',
+        redirect_uri: idp.redirect_uri,
         code_verifier: req.body.code_verifier
       }),
       headers: {
