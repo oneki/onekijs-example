@@ -1,14 +1,12 @@
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
-import { v4 as uuidv4 } from 'uuid';
-
 const adapter = new FileSync("db.json");
 const db = low(adapter);
 
 db.defaults({ users: [] }).write();
 
 export function create(user) {
-  user.id = uuidv4();
+  user.id = "" + process.hrtime();
   db.get("users").push(user).write();
   return user;
 }
