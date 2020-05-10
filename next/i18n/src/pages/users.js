@@ -3,15 +3,15 @@ import Head from "next/head";
 import { withLayout } from 'onekijs';
 import SiteLayout from '../layout/siteLayout';
 
-const IndexPage = () => {
+const UsersPage = () => {
   return (
     <>
       <Head>
-        <title>Index</title>
+        <title>Users</title>
       </Head>
-      <div>This is the index page {null}</div>
+      <div>This is the users page</div>
     </>
   );
 }
 
-export default withLayout(IndexPage, SiteLayout);
+export default withLayout(UsersPage, SiteLayout);
