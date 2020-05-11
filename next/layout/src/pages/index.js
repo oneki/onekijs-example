@@ -1,10 +1,10 @@
 import Head from "next/head";
-import { useDynamicReducer, withLayout } from 'onekijs';
+import { useGenericReducer, withLayout } from 'onekijs';
 import React from 'react';
 import SiteLayout from '../layout/siteLayout';
 
 const IndexPage = () => {
-  useDynamicReducer("layout.site", {
+  useGenericReducer("layout.site", {
     "title": "Index page",
     "subTitle": "Subtitle of Index page"
   })

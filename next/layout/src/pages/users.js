@@ -1,10 +1,10 @@
 import React from 'react'
 import Head from "next/head";
-import { withLayout, useDynamicReducer } from 'onekijs';
+import { withLayout, useGenericReducer } from 'onekijs';
 import SiteLayout from '../layout/siteLayout';
 
 const UsersPage = () => {
-  useDynamicReducer("layout.site", {
+  useGenericReducer("layout.site", {
     "title": "Users page",
     "subTitle": "Subtitle of Users page"
   });
