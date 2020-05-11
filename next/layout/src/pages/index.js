@@ -14,7 +14,7 @@ const IndexPage = () => {
       <Head>
         <title>Index</title>
       </Head>
-      <div>This is the index page {null}</div>
+      <div>This is the index page</div>
     </>
   );
 }
