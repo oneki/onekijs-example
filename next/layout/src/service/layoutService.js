@@ -5,7 +5,7 @@ export const layoutService = {
     name: "layout",
     reducers: {
       setLayoutProps: function(state, { layout, props }) {
-        const currentProps = get(state, `layout.${layout}`, {});
+        // set the props under state.layout.{{layout}}. Example: state.layout.site
         set(state, `layout.${layout}`, props);
       }
     }
