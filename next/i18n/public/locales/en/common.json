@@ -3,5 +3,10 @@
   "Welcome": "Welcome",
   "Welcome {{lastname}} on Flora": "Welcome {{lastname}} on Flora",
   "Welcome <1>{{lastname}}</1> {{firstname}": "Welcome <1>{{lastname}}</1> {{firstname}}",
-  "Hello <1><2>mister</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4>": "Hello <1><2>mister</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4>"
+  "hello": "Hello <1><2>mister</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4>",
+  "plural::hello": "Hello <1><2>gentlemen</2> {{firstname}} {{lastname}} <3>male</3></1> <4>addresses</4>",  
+  "Hello <1><2>mister</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4>": "Hello <1><2>mister</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4>",
+  "plural::Hello <1><2>mister</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4>": "Hello <1><2>gentlemen</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4>",
+  "Hello <1><2>mister</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4> <5>Welcome</5>": "Hello <1><2>mister</2> {{firstname}} {{lastname}} <3>male</3></1> <4>address</4> <5>Welcome</5>",
+  "user": "common user"
 }

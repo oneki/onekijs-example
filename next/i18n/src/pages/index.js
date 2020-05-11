@@ -9,7 +9,7 @@ import { useTranslation } from 'onekijs';
 const IndexPage = (props) => {
   // const name = "Franki";
   // const MyElement = <div>{t("toto", <>Welcome <button alt={t("this is the alt")}>{{name}}</button></>)} {t("hello {{name}}")}</div>;
-  const [t, locale, loading] = useTranslation();
+  const [T, t, locale, loading] = useTranslation();
   const lastname = "Franki";
   const firstname = "Bruno2";
   return (
@@ -19,6 +19,7 @@ const IndexPage = (props) => {
       </Head>
       <div>{t(<>Hello <b><i>mister</i> {{firstname}} {{lastname}} <i>male</i></b> <u>address</u></>)}</div>
       <div>{t(<>Welcome {{lastname}} on Flora</>)}</div>
+      <div><T>Welcome {{lastname}} on Flora</T></div>
     </>
   );
 }

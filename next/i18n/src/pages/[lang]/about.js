@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 const IndexPage = (props) => {
   // const name = "Franki";
   // const MyElement = <div>{t("toto", <>Welcome <button alt={t("this is the alt")}>{{name}}</button></>)} {t("hello {{name}}")}</div>;
-  const [t, locale, loading] = useTranslation(i18nNamespaces);
+  const [T, t, locale, loading] = useTranslation(i18nNamespaces);
   const lastname = "Franki";
   const firstname = "Bruno1";
   return (
