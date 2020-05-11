@@ -3,8 +3,7 @@ import { layout, useReduxSelector } from "onekijs";
 import Link from "next/link";
 
 const SiteLayout = ({ children }) => {
-  const title = useReduxSelector('layout.site.title', 'Hello world App');
-  const subTitle = useReduxSelector('layout.site.subTitle');
+  const reduxProps = useReduxSelector('layout.site', {});
   const style = { padding: "0 5px" };
   return (
     <>
@@ -15,8 +14,8 @@ const SiteLayout = ({ children }) => {
           marginBottom: "10px"
         }}
       >
-        <h1>{title}</h1>
-        <h2>{subTitle}</h2>
+        <h1>{reduxProps.title}</h1>
+        <h2>{reduxProps.subTitle}</h2>
         <h3>
           <Link href="/">
             <a style={style}>Index</a>
