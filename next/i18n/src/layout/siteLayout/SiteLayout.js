@@ -1,9 +1,10 @@
 import React from "react";
-import { layout } from "onekijs";
+import { layout, useI18nService } from "onekijs";
 import Link from "next/link";
 
 const SiteLayout = ({ children }) => {
   const style = { padding: "0 5px" };
+  const i18nService = useI18nService();
   return (
     <>
       <div
@@ -23,6 +24,7 @@ const SiteLayout = ({ children }) => {
             <a style={style}>Users</a>
           </Link>
         </h3>
+        <h4><button onClick={() => i18nService.changeLocale('en')}>en</button> | <button onClick={() => i18nService.changeLocale('fr')}>fr</button></h4>
       </div>
       <div>{children}</div>
     </>
