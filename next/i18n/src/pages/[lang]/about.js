@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from "next/head";
-import { withLayout,  getI18nStaticProps, withI18nPaths } from 'onekijs';
+import { withLayout,  getI18nStaticProps, withI18nPaths, useLocale } from 'onekijs';
 import SiteLayout from '../../layout/siteLayout';
 import { useTranslation } from 'onekijs';
 import fs from 'fs';
@@ -25,6 +25,7 @@ const IndexPage = (props) => {
   // const name = "Franki";
   // const MyElement = <div>{t("toto", <>Welcome <button alt={t("this is the alt")}>{{name}}</button></>)} {t("hello {{name}}")}</div>;
   const [T, t, locale, loading] = useTranslation(i18nNamespaces);
+  const locale2 = useLocale();
   const lastname = "Franki";
   const firstname = "Bruno1";
   return (
@@ -34,6 +35,7 @@ const IndexPage = (props) => {
       </Head>
       <div>{t(<>Hello <b><i>mister</i> {{firstname}} {{lastname}} <i>male</i></b> <u>address</u></>)}</div>
       <div>{t(<>Welcome {{lastname}} on Flora</>)}</div>
+      <div>{locale} {locale2}</div>
     </>
   );
 }
