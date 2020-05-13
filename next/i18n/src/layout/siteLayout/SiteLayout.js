@@ -1,5 +1,5 @@
 import React from "react";
-import { layout, useI18nService } from "onekijs";
+import { layout, useI18nService, I18nLink } from "onekijs";
 import Link from "next/link";
 
 const SiteLayout = ({ children }) => {
@@ -16,13 +16,13 @@ const SiteLayout = ({ children }) => {
       >
         <h1>Hello world App</h1>
         <h3>
-          <Link href="/">
+          <I18nLink href="/">
             <a style={style}>Index</a>
-          </Link>
+          </I18nLink>
           |
-          <Link href="/about">
+          <I18nLink href="/about">
             <a style={style}>About</a>
-          </Link>
+          </I18nLink>
         </h3>
         <h4><button onClick={() => i18nService.changeLocale('en')}>en</button> | <button onClick={() => i18nService.changeLocale('fr')}>fr</button></h4>
       </div>
