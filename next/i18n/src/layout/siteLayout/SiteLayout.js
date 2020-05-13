@@ -20,8 +20,8 @@ const SiteLayout = ({ children }) => {
             <a style={style}>Index</a>
           </Link>
           |
-          <Link href="/users">
-            <a style={style}>Users</a>
+          <Link href="/about">
+            <a style={style}>About</a>
           </Link>
         </h3>
         <h4><button onClick={() => i18nService.changeLocale('en')}>en</button> | <button onClick={() => i18nService.changeLocale('fr')}>fr</button></h4>
