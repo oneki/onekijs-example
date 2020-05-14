@@ -1,10 +1,12 @@
 import React from "react";
-import { layout, useI18nService, I18nLink } from "onekijs";
+import { layout, useI18nService, I18nLink, useSetting, useLocale } from "onekijs";
 import Link from "next/link";
 
 const SiteLayout = ({ children }) => {
   const style = { padding: "0 5px" };
   const i18nService = useI18nService();
+  const locales = useSetting("i18n.locales");
+  const locale = useLocale();
   return (
     <>
       <div
@@ -24,7 +26,13 @@ const SiteLayout = ({ children }) => {
             <a style={style}>About</a>
           </I18nLink>
         </h3>
-        <h4><button onClick={() => i18nService.changeLocale('en')}>en</button> | <button onClick={() => i18nService.changeLocale('fr')}>fr</button></h4>
+        <h4>Change locale via buttons: <button onClick={() => i18nService.changeLocale('en')}>en</button> | <button onClick={() => i18nService.changeLocale('fr')}>fr</button></h4>
+        <h4>
+          Change locale via dropdown: 
+          <select value={locale} onChange={(e) => i18nService.changeLocale(e.target.value)}>
+            {locales.map(l => <option key={l} value={l}>{l}</option>)}
+          </select> 
+        </h4>
       </div>
       <div>{children}</div>
     </>

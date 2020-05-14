@@ -14,7 +14,6 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const result = withI18nPaths(fs, path);
   return {
     paths: withI18nPaths(fs, path),
     fallback: false
