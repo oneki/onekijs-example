@@ -25,17 +25,12 @@ export async function getStaticPaths() {
 const IndexPage = (props) => {
   const params = useParams();
   const router = useOnekiRouter();
-  const nextRouter = useRouter();
-  let id;
-  if (nextRouter) {
-    id = nextRouter.query.id;
-  }
   return (
     <>
       <Head>
         <title>About</title>
       </Head>
-      <div>About: id = {params.id}, {id}</div>
+      <div>About: id = {params.id}</div>
       <button onClick={() => router.push('/about?id=1', null, {shallow:true})}>id1</button> | 
       <button onClick={() => router.push('/about?id=2', '/about?id=2', {shallow:true})}>id2</button>
       <br/>
