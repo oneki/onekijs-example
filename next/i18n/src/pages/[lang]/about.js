@@ -1,10 +1,11 @@
-import React from 'react'
-import Head from "next/head";
-import { withLayout,  getI18nStaticProps, withI18nPaths, useLocale } from 'onekijs';
-import SiteLayout from '../../layout/siteLayout';
-import { useTranslation } from 'onekijs';
 import fs from 'fs';
+import Head from "next/head";
+import Router, { useRouter } from 'next/router';
+import { getI18nStaticProps, useOnekiRouter, useParams, withI18nPaths, withLayout, I18nLink } from 'onekijs';
+import { get } from 'onekijs';
 import path from 'path';
+import React from 'react';
+import SiteLayout from '../../layout/siteLayout';
 
 const i18nNamespaces = ['users', 'common'];
 
@@ -22,20 +23,24 @@ export async function getStaticPaths() {
 }
 
 const IndexPage = (props) => {
-  // const name = "Franki";
-  // const MyElement = <div>{t("toto", <>Welcome <button alt={t("this is the alt")}>{{name}}</button></>)} {t("hello {{name}}")}</div>;
-  const [T, t, locale, loading] = useTranslation(i18nNamespaces);
-  const locale2 = useLocale();
-  const lastname = "Franki";
-  const firstname = "Bruno1";
+  const params = useParams();
+  const router = useOnekiRouter();
+  const nextRouter = useRouter();
+  let id;
+  if (nextRouter) {
+    id = nextRouter.query.id;
+  }
   return (
     <>
       <Head>
-        <title>Index</title>
+        <title>About</title>
       </Head>
-      <div>{t(<>Hello <b><i>mister</i> {{firstname}} {{lastname}} <i>male</i></b> <u>address</u></>)}</div>
-      <div>{t(<>Welcome {{lastname}} on Flora</>)}</div>
-      <div>{locale} {locale2}</div>
+      <div>About: id = {params.id}, {id}</div>
+      <button onClick={() => router.push('/about?id=1', null, {shallow:true})}>id1</button> | 
+      <button onClick={() => router.push('/about?id=2', '/about?id=2', {shallow:true})}>id2</button>
+      <br/>
+      <I18nLink href="/about?id=1" shallow={true}><a>id1</a></I18nLink> | 
+      <I18nLink href="/about?id=2" shallow={true}><a>id2</a></I18nLink>
     </>
   );
 }
