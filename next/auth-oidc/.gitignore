@@ -30,3 +30,6 @@ yarn-error.log*
 .env.production.local
 
 /src/settings.example.js
+
+# private keys
+*.pem

@@ -1,18 +1,19 @@
 import axios from 'axios';
 import qs from 'query-string';
-import { encrypt, exp, jti, sign } from './jwt';
+import jwt from './jwt';
+
 
 export default async (req, res) => {
   const assertion = {
     "iss": process.env.NEXT_ITSME_CLIENT_ID,
     "sub": process.env.NEXT_ITSME_CLIENT_ID,
     "aud": process.env.NEXT_BACKEND_ITSME_TOKEN_ENDPOINT,
-    "jti": 'ethias-'+jti(),
-    "exp": exp(3600)
+    "jti": 'ethias-'+jwt.jti(),
+    "exp": jwt.exp(3600)
   }
 
-  const signedAssertion = sign(assertion);
-  const signedAndEncryptedAssertion = encrypt(signedAssertion);
+  const signedAssertion = jwt.sign(assertion);
+  const signedAndEncryptedAssertion = jwt.encrypt(signedAssertion);
   const data = qs.stringify({
     grant_type: req.body.grant_type,
     code: req.body.code,

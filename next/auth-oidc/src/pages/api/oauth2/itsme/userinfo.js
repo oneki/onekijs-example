@@ -1,4 +1,4 @@
-import { decrypt, verify } from './jwt';
+import jwt from './jwt';
 
 export default async (req, res) => {
 
@@ -10,8 +10,8 @@ export default async (req, res) => {
     try {
       //id_token in the cookie is encrypted with our public key and signed with Itsme private key
       const encryptedUserinfo = req.cookies.userinfo;
-      const decryptedUserinfo = decrypt(encryptedUserinfo);
-      const userinfo = verify(decryptedUserinfo);
+      const decryptedUserinfo = jwt.decrypt(encryptedUserinfo);
+      const userinfo = jwt.verify(decryptedUserinfo);
 
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
