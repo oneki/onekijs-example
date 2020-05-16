@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoFacebook } from "react-icons/io";
 import { FaAmazon } from "react-icons/fa";
+import ItsmeIcon from "../../component/icon/ItsmeIcon";
 
 const LoginPage = () => {
   const router = useOnekiRouter();
@@ -110,11 +111,10 @@ const LoginPage = () => {
               Icon={FaAmazon}
             />
             <IdpLoginButton
-              name="Facebook"
-              href=""
-              className="bg-blue-800"
-              style={{ color: "white" }}
-              Icon={IoLogoFacebook}
+              name="Itsme"
+              href="/login/itsme"
+              style={{ backgroundColor: '#e3e8e1' }}
+              Icon={ItsmeIcon}
             />
           </div>
         </div>
@@ -152,7 +152,7 @@ const IdpLoginButton = ({
     <div className="mt-5">
       <Link href={href}>
         <button className={cls} style={style} type="button">
-          <Icon /> <span className="pl-2">Login with {name}</span>
+          <Icon style={{width: '2em', height: '2em'}}/> <span className="pl-2">Login with {name}</span>
         </button>
       </Link>
     </div>

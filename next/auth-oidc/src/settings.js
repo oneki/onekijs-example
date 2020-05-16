@@ -27,7 +27,30 @@ export default {
       userinfoEndpoint: process.env.NEXT_FACEBOOK_USERINFO_ENDPOINT,
       logoutEndpoint: process.env.NEXT_FACEBOOK_LOGOUT_ENDPOINT,
       scope: 'openid email profile'
-    }  
+    },
+    itsme: {
+      type: 'oidc_server', 
+      clientId: process.env.NEXT_ITSME_CLIENT_ID,                
+      authorizeEndpoint: (params, { idp, router, store, settings, i18n }) => {
+        // Here is a an example when the authorization endpoint is not fixed
+        // Indeed, we want to add the current locale as a parameter of the URL
+        if (i18n.locale) {
+          params.ui_locales = i18n.locale
+        }
+        
+        // Build the URL
+        const search = Object.keys(params).reduce((accumulator, key) => {
+          accumulator += accumulator.length > 1 ? '&' : '';
+          return `${accumulator}${key}=${params[key]}`;
+        }, "?");
+        return `${idp.authorizeUrl}${search}`;
+      }, 
+      tokenEndpoint: process.env.NEXT_ITSME_TOKEN_ENDPOINT,  
+      userinfoEndpoint: process.env.NEXT_ITSME_USERINFO_ENDPOINT,
+      logoutEndpoint: process.env.NEXT_ITSME_LOGOUT_ENDPOINT,
+      scope: process.env.NEXT_ITSME_SCOPE,
+      authorizeUrl: process.env.NEXT_ITSME_AUTHORIZE_ENDPOINT
+    }     
   },
       
 };
