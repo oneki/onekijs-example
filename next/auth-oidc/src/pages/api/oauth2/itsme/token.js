@@ -4,6 +4,7 @@ import jwt from './jwt';
 
 
 export default async (req, res) => {
+  // Itsme expects we send a client_assertion containing the following JSON (signed and encrypted)
   const assertion = {
     "iss": process.env.NEXT_ITSME_CLIENT_ID,
     "sub": process.env.NEXT_ITSME_CLIENT_ID,
@@ -14,6 +15,9 @@ export default async (req, res) => {
 
   const signedAssertion = jwt.sign(assertion);
   const signedAndEncryptedAssertion = jwt.encrypt(signedAssertion);
+
+  // OIDC /token body
+  // See https://belgianmobileid.github.io/slate/sharedata.html#3-7-exchanging-the-authorization-code
   const data = qs.stringify({
     grant_type: req.body.grant_type,
     code: req.body.code,
@@ -21,6 +25,7 @@ export default async (req, res) => {
     client_assertion: signedAndEncryptedAssertion,
     client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'
   });
+
   try {
     const response = await axios({
       method: 'post',
@@ -31,9 +36,12 @@ export default async (req, res) => {
       }
     });
 
+    // We received an access_token. 
+    // We implement the following (very basic) scenario:
+    //  - Call the /userinfo of Itsme to retrieve the details of the user and store it in a cookie
     const responseUserInfo =  await axios({
       method: 'get',
-      url: process.env.NEXT_BACKEND_ITSME_USERINFO_ENDPOINT, //example: https://auth.oneki.net/oauth2/userInfo
+      url: process.env.NEXT_BACKEND_ITSME_USERINFO_ENDPOINT,
       headers: {
         'Authorization': `Bearer ${response.data.access_token}`
       }
@@ -46,7 +54,6 @@ export default async (req, res) => {
       `userinfo=${responseUserInfo.data}; path=/; HttpOnly; SameSite=Stric; Secure` // userinfo is encrypted and signed
     ]);
 
-    // TODO verify id_token
     res.end()
   } catch (error) {
     console.error(error.response.data.error, error.response.data.detail);

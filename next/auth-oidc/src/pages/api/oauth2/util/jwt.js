@@ -98,4 +98,18 @@ export default class {
   verify(jws) {
     return JWS.verify(jws, this.verifyKey);
   }
+
+  createAccessToken(seconds) {
+    const claims = {
+      iss: 'https://oneki.net/onekijs-example/next/auth-oidc',
+      exp: this.exp(seconds)
+    }
+    return this.encrypt(this.sign(claims));
+  }
+
+  isValidAccessToken(access_token) {
+    const claims = this.verify(this.decrypt(access_token));
+    if (claims.exp > this.exp(0)) return true;
+    return false;
+  }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { useOnekiRouter, toRelativeUrl, withLayout } from "onekijs";
+import { useOnekiRouter, toRelativeUrl, withLayout, useLoginError } from "onekijs";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoFacebook } from "react-icons/io";
@@ -9,6 +9,7 @@ import ItsmeIcon from "../../component/icon/ItsmeIcon";
 
 const LoginPage = () => {
   const router = useOnekiRouter();
+  const error = useLoginError();
   if (typeof window !== "undefined") {
     sessionStorage.setItem(
       "onekijs.from",
@@ -22,7 +23,32 @@ const LoginPage = () => {
 
   return (
     <form>
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen flex-col">
+        {error && (
+          <div className="flex items-stretch mb-5">
+            <div
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <strong className="font-bold mr-2">Error!</strong>
+              <span className="block sm:inline mr-10">
+                {error.payload.message} {error.payload.code ?  `(${error.payload.code})`: ''}
+              </span>
+              <span className="absolute top-0 bottom-0 right-0 px-4 py-3" onClick={(e) => error.remove()}>
+                <svg
+                  className="fill-current h-6 w-6 text-red-700"
+                  role="button"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <title>Close</title>
+                  <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        )}
+
         <div className="flex items-stretch bg-gray-100 rounded-lg">
           <div className="text-white p-10">
             <p className="text-xl text-gray-700 font-bold">
@@ -113,7 +139,7 @@ const LoginPage = () => {
             <IdpLoginButton
               name="Itsme"
               href="/login/itsme"
-              style={{ backgroundColor: '#e3e8e1' }}
+              style={{ backgroundColor: "#e3e8e1" }}
               Icon={ItsmeIcon}
             />
           </div>
@@ -152,7 +178,8 @@ const IdpLoginButton = ({
     <div className="mt-5">
       <Link href={href}>
         <button className={cls} style={style} type="button">
-          <Icon style={{width: '2em', height: '2em'}}/> <span className="pl-2">Login with {name}</span>
+          <Icon style={{ width: "2em", height: "2em" }} />{" "}
+          <span className="pl-2">Login with {name}</span>
         </button>
       </Link>
     </div>

@@ -4,7 +4,6 @@ const qs = require('query-string');
 
 export default async (idp, req, res) => {
   try {
-    console.log("CALL TOKEN ENDPOINT", idp);
     const response = await axios({
       method: 'post',
       url: idp.tokenEndpoint, //https://auth.oneki.net/oauth2/token
