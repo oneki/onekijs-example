@@ -4,29 +4,30 @@ import jwt from './jwt';
 
 
 export default async (req, res) => {
-  // Itsme expects we send a client_assertion containing the following JSON (signed and encrypted)
-  const assertion = {
-    "iss": process.env.NEXT_ITSME_CLIENT_ID,
-    "sub": process.env.NEXT_ITSME_CLIENT_ID,
-    "aud": process.env.NEXT_BACKEND_ITSME_TOKEN_ENDPOINT,
-    "jti": 'ethias-'+jwt.jti(),
-    "exp": jwt.exp(3600)
-  }
-
-  const signedAssertion = jwt.sign(assertion);
-  const signedAndEncryptedAssertion = jwt.encrypt(signedAssertion);
-
-  // OIDC /token body
-  // See https://belgianmobileid.github.io/slate/sharedata.html#3-7-exchanging-the-authorization-code
-  const data = qs.stringify({
-    grant_type: req.body.grant_type,
-    code: req.body.code,
-    redirect_uri: req.body.redirect_uri,
-    client_assertion: signedAndEncryptedAssertion,
-    client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'
-  });
-
   try {
+  // Itsme expects we send a client_assertion containing the following JSON (signed and encrypted)
+    const assertion = {
+      "iss": process.env.NEXT_ITSME_CLIENT_ID,
+      "sub": process.env.NEXT_ITSME_CLIENT_ID,
+      "aud": process.env.NEXT_BACKEND_ITSME_TOKEN_ENDPOINT,
+      "jti": 'ethias-'+jwt.jti(),
+      "exp": jwt.exp(3600)
+    }
+
+    const signedAssertion = jwt.sign(assertion);
+    const signedAndEncryptedAssertion = jwt.encrypt(signedAssertion);
+
+    // OIDC /token body
+    // See https://belgianmobileid.github.io/slate/sharedata.html#3-7-exchanging-the-authorization-code
+    const data = qs.stringify({
+      grant_type: req.body.grant_type,
+      code: req.body.code,
+      redirect_uri: req.body.redirect_uri,
+      client_assertion: signedAndEncryptedAssertion,
+      client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'
+    });
+
+
     const response = await axios({
       method: 'post',
       url: process.env.NEXT_BACKEND_ITSME_TOKEN_ENDPOINT,

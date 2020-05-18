@@ -10,5 +10,5 @@ const withNextEnv = nextEnv({
 });
 
 module.exports = withNextEnv(withCSS({
-  // Your Next.js config.
+  target: "serverless"
 }));
