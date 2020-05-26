@@ -1,8 +1,21 @@
 import React from 'react'
 import Head from "next/head";
-import { secure } from 'onekijs';
-import MainLayout from '../../layout/mainLayout';
+import { secure, getI18nStaticProps, withI18nPaths } from 'onekijs';
+import MainLayout from '../../../layout/mainLayout';
 import { withLayout } from 'onekijs';
+import fs from 'fs';
+import path from 'path';
+
+export async function getStaticProps(context) {
+  return getI18nStaticProps(fs, path, context.params.lang);
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: withI18nPaths(fs, path),
+    fallback: false
+  }
+}
 
 const AdminPage = () =>  {
   return (

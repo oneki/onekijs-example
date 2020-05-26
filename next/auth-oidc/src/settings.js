@@ -1,4 +1,9 @@
 export default {
+  i18n: {
+    locales: ['en', 'fr'],
+    defaultLocale: null,
+    url: "/locales"
+  },
   idp: {
     google: {
       type: 'oidc_server', 

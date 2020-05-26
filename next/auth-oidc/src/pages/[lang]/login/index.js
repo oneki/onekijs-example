@@ -1,20 +1,30 @@
 import React from "react";
 import Link from "next/link";
-import { useOnekiRouter, toRelativeUrl, withLayout, useLoginError } from "onekijs";
+import { useOnekiRouter, toRelativeUrl, withLayout, useLoginError, getI18nStaticProps, withI18nPaths, I18nLink } from "onekijs";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoFacebook } from "react-icons/io";
 import { FaAmazon } from "react-icons/fa";
-import ItsmeIcon from "../../component/icon/ItsmeIcon";
+import ItsmeIcon from "../../../component/icon/ItsmeIcon";
+import fs from 'fs';
+import path from 'path';
+
+export async function getStaticProps(context) {
+  return getI18nStaticProps(fs, path, context.params.lang);
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: withI18nPaths(fs, path),
+    fallback: false
+  }
+}
 
 const LoginPage = () => {
   const router = useOnekiRouter();
   const error = useLoginError();
   if (typeof window !== "undefined") {
-    sessionStorage.setItem(
-      "onekijs.from",
-      toRelativeUrl(router.previousLocation)
-    );
+    router.saveOrigin();
   }
 
   // use react-hook-from to build the form
@@ -52,13 +62,13 @@ const LoginPage = () => {
         <div className="flex items-stretch bg-gray-100 rounded-lg">
           <div className="text-white p-10">
             <p className="text-xl text-gray-700 font-bold">
-              <Link href="/">
+              <I18nLink href="/">
                 <img
                   className="h-8 w-8 cursor-pointer inline-block"
                   src="/logo.svg"
                   alt=""
                 />
-              </Link>
+              </I18nLink>
               <span className="ml-4">Login</span>
             </p>
             <p className="text-base text-gray-500 mt-4">
@@ -176,12 +186,12 @@ const IdpLoginButton = ({
     className;
   return (
     <div className="mt-5">
-      <Link href={href}>
+      <I18nLink href={href}>
         <button className={cls} style={style} type="button">
           <Icon style={{ width: "2em", height: "2em" }} />{" "}
           <span className="pl-2">Login with {name}</span>
         </button>
-      </Link>
+      </I18nLink>
     </div>
   );
 };
