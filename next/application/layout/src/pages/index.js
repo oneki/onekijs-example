@@ -5,12 +5,10 @@ import SiteLayout from '../layout/siteLayout';
 
 const IndexPage = () => {
   return (
-    <>
-      <Head>
-        <title>Index</title>
-      </Head>
-      <div>This is the index page {null}</div>
-    </>
+    <div>
+      <p>This example shows how to use a common layout in several pages.</p>
+      <p>Please note that the layout is not unmount/mount during a transition between pages, so it keeps its state</p>  
+    </div>
   );
 }
 

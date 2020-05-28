@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const SiteLayout = ({ children }) => {
   const style = { padding: "0 5px" };
+
   return (
     <>
       <div
@@ -13,7 +14,7 @@ const SiteLayout = ({ children }) => {
           marginBottom: "10px"
         }}
       >
-        <h1>Hello world App</h1>
+        <h1>Layout demo app</h1>
         <h3>
           <Link href="/">
             <a style={style}>Index</a>
