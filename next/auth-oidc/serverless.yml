@@ -1,8 +1,0 @@
-i18nNextExample:
-  component: serverless-next.js@1.12.0-alpha.2
-  inputs:
-    bucketName: auth-oidc-example
-    domain: ['auth-oidc', 'sandbox.flora.insure']
-    name:
-      defaultLambda: authOidcLambda
-      apiLambda: authOidcApiLambda

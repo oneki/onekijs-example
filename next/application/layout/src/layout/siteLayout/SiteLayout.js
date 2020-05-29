@@ -1,32 +1,36 @@
-import React from "react";
-import { layout } from "onekijs";
 import Link from "next/link";
+import { layout } from "onekijs";
+import React from "react";
 
 const SiteLayout = ({ children }) => {
-  const style = { padding: "0 5px" };
-
   return (
-    <>
-      <div
-        style={{
-          backgroundColor: "#EEE",
-          padding: "10px",
-          marginBottom: "10px"
-        }}
-      >
-        <h1>Layout demo app</h1>
-        <h3>
-          <Link href="/">
-            <a style={style}>Index</a>
-          </Link>
-          |
-          <Link href="/users">
-            <a style={style}>Users</a>
-          </Link>
-        </h3>
+    <div className="bg-white antialiased">
+      <div>
+        <div>
+          <div className="max-w-3xl mx-auto px-8">
+            <nav>
+              <div className="py-4 flex-shrink-0 flex items-center">
+                <Link href="/">
+                  <img
+                    className="h-8 w-8 cursor-pointer"
+                    src="/logo.svg"
+                  />
+                </Link>
+                <Link href="/">
+                  <a className="ml-8 font-medium text-gray-900">Home</a>
+                </Link>
+                <Link href="/users">
+                  <a className="ml-8 font-medium text-gray-900">Users</a>
+                </Link>
+              </div>
+            </nav>
+          </div>
+        </div>
       </div>
-      <div>{children}</div>
-    </>
+      <div className="mt-6 sm:mt-0">
+        <div className="mt-8 max-w-3xl mx-auto px-8">{children}</div>
+      </div>
+    </div>
   );
 };
 

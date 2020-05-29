@@ -13,7 +13,7 @@ export default () => {
       <div>
         This simple example bootstraps:
         <ul>
-          <li><b>A router</b>: Go to <Link href="/users">Users page</Link></li>
+          <li><b>A router</b>: Go to <Link href="/users"><a>Users page</a></Link></li>
           <li><b>A Redux store</b></li>
         </ul>
       </div>
