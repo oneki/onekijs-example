@@ -1,8 +1,8 @@
-import { useLoginError, useOnekiRouter, useLoginService } from "onekijs";
-import React from "react";
-import ErrorNotification from "../component/notification/ErrorNotification";
-import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { useLoginService, useOnekiRouter } from "onekijs";
+import React from "react";
+import { useForm } from "react-hook-form";
+import ErrorNotification from "../component/notification/ErrorNotification";
 
 const LoginPage = () => {
   const router = useOnekiRouter();
@@ -18,56 +18,25 @@ const LoginPage = () => {
 
         <div className="flex items-stretch bg-gray-100 rounded-lg w-2/4">
           <div className="text-white p-10 w-full">
-            <p className="text-xl text-gray-700 font-bold">
-              <img
-                className="h-8 w-8 cursor-pointer inline-block"
-                src="/logo.svg"
-                alt=""
-              />
-              <span className="ml-4">Login</span>
-            </p>
-            <p className="text-base text-gray-500 mt-4">
-              Basic username / password login
-            </p>
+            <LoginHeader />
             <div className="mt-6">
               <div className="max-w-4xl mx-auto">
-                <label className="block">
-                  <span className="block font-medium text-sm text-gray-900 leading-tight">
-                    Username
-                  </span>
-                  <div className="mt-2">
-                    <input
-                      name="username"
-                      className="text-black block w-full border border-gray-300 rounded-lg px-3 py-2 leading-tight focus:outline-none focus:border-gray-600 focus:bg-white"
-                      ref={register}
-                    />
-                  </div>
-                </label>
-                <label className="block mt-5">
-                  <span className="block font-medium text-sm text-gray-900 leading-tight">
-                    Password
-                  </span>
-                  <div className="mt-2">
-                    <input
-                      name="password"
-                      type="password"
-                      className="text-black block w-full border border-gray-300 rounded-lg px-3 py-2 leading-tight focus:outline-none focus:border-gray-600 focus:bg-white"
-                      ref={register}
-                    />
-                  </div>
-                </label>
+                <LoginField
+                  name="username"
+                  label="Username"
+                  type="text"
+                  register={register}
+                />
+                <div className="mt-5" />
+                <LoginField
+                  name="password"
+                  label="Password"
+                  type="password"
+                  register={register}
+                />
               </div>
             </div>
-            <div className="px-0 py-5 flex justify-end">
-              <Link href="/">
-                <a className="text-black mt-2">Cancel</a>
-              </Link>
-              <SubmitButton
-                label="Submit"
-                loading={false}
-                onClick={handleSubmit(submit)}
-              />
-            </div>
+            <LoginSubmit onSubmit={handleSubmit(submit)} />
           </div>
         </div>
       </div>
@@ -87,6 +56,60 @@ const SubmitButton = ({ loading, label = "Submit", onClick }) => {
     >
       {buttonLabel}
     </button>
+  );
+};
+
+const LoginHeader = () => {
+  return (
+    <>
+      <p className="text-xl text-gray-700 font-bold">
+        <img
+          className="h-8 w-8 cursor-pointer inline-block"
+          src="/logo.svg"
+          alt=""
+        />
+        <span className="ml-4">Login</span>
+      </p>
+      <p className="text-base text-gray-800 mt-4">
+        Basic username / password login
+      </p>
+      <p className="text-gray-500 text-sm">
+        Hint: username = admin and password = admin
+      </p>
+    </>
+  );
+};
+
+const LoginField = ({ label, name, type, register }) => {
+  return (
+    <label className="block">
+      <span className="block font-medium text-sm text-gray-900 leading-tight">
+        {label}
+      </span>
+      <div className="mt-2">
+        <input
+          name={name}
+          type={type}
+          className="text-black block w-full border border-gray-300 rounded-lg px-3 py-2 leading-tight focus:outline-none focus:border-gray-600 focus:bg-white"
+          ref={register}
+        />
+      </div>
+    </label>
+  );
+};
+
+const LoginSubmit = ({ onSubmit }) => {
+  return (
+    <div className="px-0 py-5 flex justify-end">
+      <Link href="/">
+        <a className="text-black mt-2">Cancel</a>
+      </Link>
+      <SubmitButton
+        label="Submit"
+        loading={false}
+        onClick={onSubmit}
+      />
+    </div>
   );
 };
 
