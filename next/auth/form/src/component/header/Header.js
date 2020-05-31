@@ -19,8 +19,8 @@ export default () => {
               <I18nLink href="/">
                 <a className="ml-8 font-medium text-gray-900">Home</a>
               </I18nLink>
-              <I18nLink href="/profil">
-                <a className="ml-8 font-medium text-gray-900">Profil</a>
+              <I18nLink href="/profile">
+                <a className="ml-8 font-medium text-gray-900">Profile</a>
               </I18nLink>
               <I18nLink href="/admin">
                 <a className="ml-8 font-medium text-gray-900">Admin</a>
