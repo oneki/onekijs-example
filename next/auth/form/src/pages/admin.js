@@ -1,11 +1,38 @@
-import { withLayout, secure } from 'onekijs';
-import React from 'react';
+import { withLayout, secure, useSetting, useOnekiRouter } from 'onekijs';
+import React, { useEffect } from 'react';
 import MainLayout from '../layout/mainLayout/MainLayout';
 
 const AdminPage = () => {
   return (
-    <div>This is the (protected) admin page</div>
+    <div>This is the (protected) admin page. Only logged-in users with the role <b>ADMIN</b> can view it</div>
   );
 }
 
-export default secure(withLayout(AdminPage, MainLayout));
+const AdminPageWithLayout = withLayout(AdminPage, MainLayout);
+
+const validator = (securityContext) => {
+  return securityContext &&
+         securityContext.roles &&
+         securityContext.roles.includes('ADMIN');
+}
+
+const ErrorComponent = ({error}) => {
+  const router = useOnekiRouter();
+  const loginRoute = useSetting('routes.login', '/login');
+
+  useEffect(() => {
+    if (error.code === 401) {
+      router.push(loginRoute);
+    }
+  }, [error.code, router, loginRoute])
+  
+  if (error.code === 401) {
+    return null;
+  }
+
+  return (
+    <div className="text-red-500">You are not authorized to view this page</div>
+  )
+}
+
+export default secure(AdminPageWithLayout, validator, { ErrorComponent });

@@ -68,13 +68,12 @@ const LoginHeader = () => {
           src="/logo.svg"
           alt=""
         />
-        <span className="ml-4">Login</span>
+        <span className="ml-4">Basic username / password login</span>
       </p>
-      <p className="text-base text-gray-800 mt-4">
-        Basic username / password login
-      </p>
-      <p className="text-gray-500 text-sm">
-        Hint: username = admin and password = admin
+      <p className="text-gray-500 text-sm mt-5">
+        <b>User</b>: user / user<br/>
+        <b>Admin</b>: admin / admin
+        
       </p>
     </>
   );
