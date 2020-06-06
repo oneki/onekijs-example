@@ -1,7 +1,8 @@
 {
   "welcome": "Bienvenue",
   "Welcome": "Bienvenue",
-  "Welcome {{lastname}} on Flora": "Bievenue {{lastname}} sur Flora",
+  "Welcome {{lastname}} on Flora": "Bienvenue {{ lastname}} sur Oneki",
+  "Welcome {{lastname}} on Flora. Current date = {{date}}": "Bienvenue {{ lastname}} sur Oneki. Date actuelle = {{date | locale}}",
   "Welcome <1>{{lastname}}</1> {{firstname}": "Bienvenue {{firstname}} <1>{{lastname}}</1>",
   "hello": "Bonjour <1><2>monsieur</2> {{lastname}} {{firstname}}  <3>masculin</3></1> <4>adresse</4>",
   "plural::hello": "Bonjour <1><2>messieurs</2> {{lastname}} {{firstname}}  <3>masculin</3></1> <4>adresses</4>", 

@@ -26,6 +26,7 @@ const IndexPage = (props) => {
   const [T, t, locale, loading] = useTranslation(i18nNamespaces);
   const lastname = "Franki";
   const firstname = "Bruno2";
+  const date = new Date();
   return (
     <>
       <Head>
@@ -33,7 +34,8 @@ const IndexPage = (props) => {
       </Head>
       <div><T alias="hello">Hello <b><i>mister</i> {{firstname}} {{lastname}} <i>male</i></b> <u>address</u></T></div>
       <div><T count={2}>Hello <b><i>mister</i> {{firstname}} {{lastname}} <i>male</i></b> <u>address</u></T></div>
-      <div><T>Welcome {{lastname}} on Flora</T></div>
+      <div><T>Welcome {{ lastname }} on Flora</T></div>
+      <div><T>Welcome {{ lastname }} on Flora. Current date = {{date}}</T></div>
       <div title={t("Welcome")}><T>Welcome</T></div>
 
       <div><T>Hello <b><i>mister</i> {{firstname}} {{lastname}} <i>male</i></b> <u>address</u> <span title={t("Welcome")}>Welcome</span></T></div>
